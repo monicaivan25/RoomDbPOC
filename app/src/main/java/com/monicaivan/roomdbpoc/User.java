@@ -17,13 +17,4 @@ public class User implements Serializable {
 
     @ColumnInfo(name = "last_name")
     public String lastName;
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "uid=" + uid +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                '}';
-    }
 }

@@ -1,18 +1,14 @@
 package com.monicaivan.roomdbpoc;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,9 +23,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "my-database")
-                .allowMainThreadQueries()
-                .build();
+        db = AppDatabase.getInstance(getBaseContext());
 
         mName = findViewById(R.id.name);
         mSurname = findViewById(R.id.surname);
@@ -45,9 +39,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void getFromDatabase(View v) {
-        ArrayList<User> users = (ArrayList<User>) db.userDao().getAll();
-        Intent intent = new Intent(getBaseContext(), UsersRecyclerView.class);
-        intent.putExtra("userList", users);
+
+        Intent intent = new Intent(getBaseContext(), UsersListActivity.class);
         startActivity(intent);
     }
 }

@@ -14,10 +14,10 @@ import java.util.List;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> {
     private static final String TAG = "UserAdapter";
-    private List<User> mDataset;
+    private List<User> userList;
 
-    public UserAdapter(List<User> dataset) {
-        this.mDataset = dataset;
+    UserAdapter(List<User> dataset) {
+        this.userList = dataset;
     }
 
     @NonNull
@@ -32,32 +32,37 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.id.setText(String.valueOf(mDataset.get(position).uid));
-        Log.d(TAG, "onBindViewHolder: "+mDataset.get(position).lastName);
-        holder.name.setText(mDataset.get(position).lastName);
-        holder.surname.setText(mDataset.get(position).firstName);
+        holder.id.setText(String.valueOf(userList.get(position).uid));
+        Log.d(TAG, "onBindViewHolder: "+ userList.get(position).lastName);
+        holder.name.setText(userList.get(position).lastName);
+        holder.surname.setText(userList.get(position).firstName);
 
 
     }
+
+    User getUser(int position){
+        return userList.get(position);
+    }
+
 
     @Override
     public int getItemCount() {
-        return mDataset.size();
+        return userList.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
-        // each data item is just a string in this case
-        public TextView id;
-        public TextView name;
-        public TextView surname;
+    static class MyViewHolder extends RecyclerView.ViewHolder {
+        TextView id;
+        TextView name;
+        TextView surname;
 
 
-        public MyViewHolder(@NonNull View itemView){
+        MyViewHolder(@NonNull View itemView){
             super(itemView);
             id = itemView.findViewById(R.id.row_id);
             name = itemView.findViewById(R.id.row_name);
             surname = itemView.findViewById(R.id.row_surname);
         }
     }
+
 
 }
