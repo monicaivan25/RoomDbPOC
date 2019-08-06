@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">RoomDbPOC</string>
+    <string name="name">Name</string>
+    <string name="surname">Surname</string>
+    <string name="add_user">Add User</string>
+    <string name="view_db">View DB</string>
+</resources>
